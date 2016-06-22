@@ -17,7 +17,7 @@
     "require": {
         "php": ">=5.4.0",
         "gusdecool/cryptography": "~1.0",
-        "symfony/framework-bundle": "~2.3|~3.0",
-        "doctrine/orm": "~2.2"
+        "doctrine/orm": "~2.2",
+        "sensio/framework-extra-bundle": "~2.3|~3.0"
     }
 }
