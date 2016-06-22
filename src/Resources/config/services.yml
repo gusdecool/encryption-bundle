@@ -1,0 +1,14 @@
+services:
+
+    #----------------------------------------------------------------------------------------------
+    # Subscribers
+    #----------------------------------------------------------------------------------------------
+
+    gdc_encryption.subscriber.aes:
+        class: Gdc\EncryptionBundle\Subscriber\AesSubscriber
+        public: false
+        arguments:
+            - "lolololo"
+            - @annotation_reader
+        tags:
+            - { name: doctrine.event_subscriber }
