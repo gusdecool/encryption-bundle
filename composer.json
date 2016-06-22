@@ -1,0 +1,22 @@
+{
+    "name": "gusdecool/encryption-bundle",
+    "description": "symfony encryption bundle",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GusDeCooL",
+            "email": "gusdecool@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gdc\\EncryptionBundle\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "gusdecool/cryptography": "~1.0",
+        "symfony/framework-bundle": "~2.3|~3.0"
+    }
+}
