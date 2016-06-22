@@ -19,7 +19,9 @@ class GdcEncryptionExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $this->processConfiguration(new Configuration(), $configs);
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+        $container->setParameter('gdc_encryption.aes_key', $config['aes_key']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

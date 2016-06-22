@@ -18,7 +18,12 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('gdc_encryption');
+        $rootNode = $treeBuilder->root('gdc_encryption');
+
+        $rootNode
+            ->children()
+                ->scalarNode('aes_key')->isRequired()->cannotBeEmpty()->end()
+            ->end();
 
         return $treeBuilder;
     }
