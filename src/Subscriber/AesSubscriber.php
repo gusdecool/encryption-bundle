@@ -4,6 +4,7 @@ namespace Gdc\EncryptionBundle\Subscriber;
 
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\EventSubscriber;
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use Gdc\EncryptionBundle\Annotation\AesEncrypt;
@@ -145,7 +146,7 @@ class AesSubscriber implements EventSubscriber
     {
         $annotatedProperties = [];
 
-        $class      = new \ReflectionClass($entity);
+        $class = new \ReflectionClass(ClassUtils::getClass($entity));
         $properties = $class->getProperties();
 
         foreach ($properties as $property) {
