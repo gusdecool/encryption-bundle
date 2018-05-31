@@ -41,7 +41,7 @@ class AesSubscriber implements EventSubscriber
      * @param string $key encryption key
      * @param Reader $reader
      */
-    public function __construct($key, Reader $reader)
+    public function __construct(string $key, Reader $reader)
     {
         $this->encryptor = new AesEncryption($key);
         $this->annotationReader = $reader;
@@ -56,31 +56,34 @@ class AesSubscriber implements EventSubscriber
      *
      * @return array
      */
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
         return [Events::prePersist, Events::preUpdate, Events::postLoad];
     }
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws \ReflectionException
      */
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $this->encrypt($args);
     }
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws \ReflectionException
      */
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $args): void
     {
         $this->encrypt($args);
     }
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws \ReflectionException
      */
-    public function postLoad(LifecycleEventArgs $args)
+    public function postLoad(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         $properties = $this->getAnnotatedProperties($entity);
@@ -111,8 +114,9 @@ class AesSubscriber implements EventSubscriber
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws \ReflectionException
      */
-    private function encrypt(LifecycleEventArgs $args)
+    private function encrypt(LifecycleEventArgs $args): void
     {
         $entity = $args->getEntity();
         $properties = $this->getAnnotatedProperties($entity);
@@ -141,8 +145,9 @@ class AesSubscriber implements EventSubscriber
      * @param object $entity
      *
      * @return \ReflectionProperty[]
+     * @throws \ReflectionException
      */
-    private function getAnnotatedProperties($entity)
+    private function getAnnotatedProperties(object $entity): array
     {
         $annotatedProperties = [];
 
@@ -164,7 +169,7 @@ class AesSubscriber implements EventSubscriber
      *
      * @return string|null
      */
-    private function getGetter($property, $entity)
+    private function getGetter(\ReflectionProperty $property, object $entity): ?string
     {
         $getter = 'get' . ucfirst($property->getName());
 
@@ -181,7 +186,7 @@ class AesSubscriber implements EventSubscriber
      *
      * @return string|null
      */
-    private function getSetter($property, $entity)
+    private function getSetter(\ReflectionProperty $property, object $entity): ?string
     {
         $setter = 'set' . ucfirst($property->getName());
 
