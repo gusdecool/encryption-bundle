@@ -8,7 +8,7 @@ services:
         class: Gdc\EncryptionBundle\Subscriber\AesSubscriber
         public: false
         arguments:
-            - %gdc_encryption.aes_key%
-            - @annotation_reader
+            - '%gdc_encryption.aes_key%'
+            - '@annotation_reader'
         tags:
             - { name: doctrine.event_subscriber }
