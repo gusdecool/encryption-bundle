@@ -1,5 +1,6 @@
 {
     "name": "gusdecool/encryption-bundle",
+    "version": "1.1.0",
     "description": "symfony encryption bundle",
     "type": "library",
     "license": "MIT",
@@ -16,7 +17,7 @@
     },
     "require": {
         "php": "^7.1.3",
-        "gusdecool/cryptography": "~1.0",
+        "gusdecool/cryptography": "~1.1|dev-mcrypt_to_openssl",
         "symfony/orm-pack": "^1.0",
         "sensio/framework-extra-bundle": "^5.1"
     }
