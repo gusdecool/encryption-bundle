@@ -147,7 +147,7 @@ class AesSubscriber implements EventSubscriber
      * @return \ReflectionProperty[]
      * @throws \ReflectionException
      */
-    private function getAnnotatedProperties(object $entity): array
+    private function getAnnotatedProperties($entity): array
     {
         $annotatedProperties = [];
 
@@ -169,7 +169,7 @@ class AesSubscriber implements EventSubscriber
      *
      * @return string|null
      */
-    private function getGetter(\ReflectionProperty $property, object $entity): ?string
+    private function getGetter(\ReflectionProperty $property, $entity): ?string
     {
         $getter = 'get' . ucfirst($property->getName());
 
@@ -186,7 +186,7 @@ class AesSubscriber implements EventSubscriber
      *
      * @return string|null
      */
-    private function getSetter(\ReflectionProperty $property, object $entity): ?string
+    private function getSetter(\ReflectionProperty $property, $entity): ?string
     {
         $setter = 'set' . ucfirst($property->getName());
 
